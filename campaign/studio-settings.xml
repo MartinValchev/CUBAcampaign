@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<studio>
+    <screenDesigner>
+        <screen module="web"
+                previewMode="true"
+                reference="com/company/campaign/web/campaign/campaign-edit.xml"/>
+    </screenDesigner>
+</studio>

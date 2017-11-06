@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.campaign.web.campaign.CampaignEdit"
+        datasource="campaignDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.campaign.web.campaign">
+    <dsContext>
+        <datasource id="campaignDs"
+                    class="com.company.campaign.entity.Campaign"
+                    view="campaign-edit-view">
+            <collectionDatasource id="campaignPositionDs"
+                                  property="campaignPosition"/>
+        </datasource>
+        <collectionDatasource id="websitesDs"
+                              class="com.company.campaign.entity.Website"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from campaign$Website e
+]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="campaignDs">
+            <column width="250px">
+                <field property="name"/>
+                <field property="startDate"/>
+                <field property="endDate"/>
+            </column>
+        </fieldGroup>
+        <table id="campaignPositionTable"
+               height="200px"
+               width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="bannerPosition"/>
+                <column id="impressions"/>
+                <column id="startDate"
+                        caption="Start Date"/>
+                <column id="endDate"
+                        caption="End Date"/>
+            </columns>
+            <rows datasource="campaignPositionDs"/>
+            <buttonsPanel>
+                <button action="campaignPositionTable.create"/>
+                <button action="campaignPositionTable.edit"/>
+                <button action="campaignPositionTable.remove"/>
+            </buttonsPanel>
+            <label value="Campaign Baner Positions"/>
+        </table>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

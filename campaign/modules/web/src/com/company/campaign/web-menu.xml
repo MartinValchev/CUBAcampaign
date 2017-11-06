@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-campaign"
+          insertBefore="administration">
+        <item screen="campaign$Campaign.browse"/>
+        <item screen="campaign$BannerPosition.browse"/>
+        <item screen="campaign$Website.browse"/>
+    </menu>
+</menu-config>

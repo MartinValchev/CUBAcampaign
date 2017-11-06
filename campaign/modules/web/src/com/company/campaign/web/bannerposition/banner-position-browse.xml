@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.company.campaign.web.bannerposition.BannerPositionBrowse"
+        focusComponent="bannerPositionsTable"
+        lookupComponent="bannerPositionsTable"
+        messagesPack="com.company.campaign.web.bannerposition">
+    <dsContext>
+        <datasource id="bannerPositionDs"
+                    class="com.company.campaign.entity.BannerPosition"
+                    view="bannerPosition-edit-view"/>
+        <groupDatasource id="bannerPositionsDs"
+                         class="com.company.campaign.entity.BannerPosition"
+                         view="bannerPosition-browse-view">
+            <query>
+                <![CDATA[select e from campaign$BannerPosition e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <actions>
+        <action id="save"
+                caption="mainMsg://actions.Ok"
+                icon="icons/ok.png"
+                invoke="save"
+                shortcut="CTRL-ENTER"/>
+        <action id="cancel"
+                caption="mainMsg://actions.Cancel"
+                description="Esc"
+                icon="icons/cancel.png"
+                invoke="cancel"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <split id="split"
+               height="100%"
+               orientation="horizontal"
+               reversePosition="true"
+               width="100%">
+            <vbox id="lookupBox"
+                  expand="bannerPositionsTable"
+                  height="100%"
+                  margin="false,true,false,false"
+                  spacing="true">
+                <filter id="filter"
+                        applyTo="bannerPositionsTable"
+                        datasource="bannerPositionsDs">
+                    <properties include=".*"/>
+                </filter>
+                <groupTable id="bannerPositionsTable"
+                            width="100%">
+                    <actions>
+                        <action id="create"/>
+                        <action id="edit"/>
+                        <action id="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                        <column id="impressionsLimit"/>
+                        <column id="website"/>
+                    </columns>
+                    <rows datasource="bannerPositionsDs"/>
+                    <rowsCount/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn"
+                                action="bannerPositionsTable.create"/>
+                        <button id="editBtn"
+                                action="bannerPositionsTable.edit"/>
+                        <button id="removeBtn"
+                                action="bannerPositionsTable.remove"/>
+                    </buttonsPanel>
+                </groupTable>
+            </vbox>
+            <vbox id="editBox"
+                  expand="fieldGroupBox"
+                  height="100%"
+                  margin="false,false,false,true"
+                  spacing="true">
+                <vbox id="fieldGroupBox">
+                    <fieldGroup id="fieldGroup"
+                                datasource="bannerPositionDs">
+                        <column width="250px">
+                            <field property="name"/>
+                            <field property="impressionsLimit"/>
+                            <field property="website"/>
+                        </column>
+                    </fieldGroup>
+                </vbox>
+                <hbox id="actionsPane"
+                      spacing="true"
+                      visible="false">
+                    <button id="saveBtn"
+                            action="save"/>
+                    <button id="cancelBtn"
+                            action="cancel"/>
+                </hbox>
+            </vbox>
+        </split>
+    </layout>
+</window>

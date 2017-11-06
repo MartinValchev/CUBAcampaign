@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             version="2.0">
+    <persistence-unit name="campaign"
+                      transaction-type="RESOURCE_LOCAL">
+        <class>com.company.campaign.entity.Campaign</class>
+        <class>com.company.campaign.entity.BannerPosition</class>
+        <class>com.company.campaign.entity.CampaignBannerPosition</class>
+        <class>com.company.campaign.entity.Website</class>
+    </persistence-unit>
+</persistence>

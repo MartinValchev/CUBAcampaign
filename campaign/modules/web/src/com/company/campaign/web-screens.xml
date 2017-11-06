@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
+    <include file="com/company/campaign/screens.xml"/>
+    <screen id="campaign$Campaign.browse"
+            template="com/company/campaign/web/campaign/campaign-browse.xml"/>
+    <screen id="campaign$Campaign.edit"
+            template="com/company/campaign/web/campaign/campaign-edit.xml"/>
+    <screen id="campaign$BannerPosition.browse"
+            template="com/company/campaign/web/bannerposition/banner-position-browse.xml"/>
+    <screen id="campaign$Website.browse"
+            template="com/company/campaign/web/website/website-browse.xml"/>
+    <screen id="campaign$Website.edit"
+            template="com/company/campaign/web/website/website-edit.xml"/>
+    <screen id="frame"
+            template="com/company/campaign/web/campaign/frame.xml"/>
+    <screen id="campaign$CampaignBannerPosition.edit"
+            template="com/company/campaign/web/campaignbannerposition/campaign-banner-position-edit.xml"/>
+</screen-config>

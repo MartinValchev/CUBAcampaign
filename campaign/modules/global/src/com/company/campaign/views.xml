@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+    <view class="com.company.campaign.entity.Campaign"
+          extends="_local"
+          name="campaign-view"/>
+    <view class="com.company.campaign.entity.Campaign"
+          extends="_local"
+          name="campaign-edit-view">
+        <property name="campaignPosition"
+                  view="_minimal">
+            <property name="bannerPosition"
+                      view="_local">
+                <property name="website"
+                          view="_minimal">
+                </property>
+            </property>
+            <property name="impressions"/>
+            <property name="startDate"/>
+            <property name="endDate"/>
+        </property>
+    </view>
+    <view class="com.company.campaign.entity.CampaignBannerPosition"
+          extends="_local"
+          name="campaignBannerPosition-browse-view">
+        <property name="bannerPosition"
+                  view="_minimal">
+            <property name="website"
+                      view="_minimal">
+                <property name="webVersion"/>
+            </property>
+        </property>
+        <property name="campaign"
+                  view="_minimal"/>
+    </view>
+    <view class="com.company.campaign.entity.Website"
+          extends="_local"
+          name="website-browse-view"/>
+    <view class="com.company.campaign.entity.BannerPosition"
+          extends="_local"
+          name="bannerPosition-browse-view">
+        <property name="website"
+                  view="_minimal"/>
+    </view>
+    <view class="com.company.campaign.entity.BannerPosition"
+          extends="_local"
+          name="bannerPosition-edit-view">
+        <property name="website"
+                  view="_minimal">
+            <property name="webVersion"/>
+        </property>
+    </view>
+    <view class="com.company.campaign.entity.Website"
+          extends="_local"
+          name="website-edit-view">
+        <property name="bannerPosition"
+                  view="_minimal">
+            <property name="impressionsLimit"/>
+        </property>
+    </view>
+    <view class="com.company.campaign.entity.CampaignBannerPosition"
+          extends="_local"
+          name="campaignBannerPosition-edit-view">
+        <property name="bannerPosition"
+                  view="_minimal">
+        </property>
+    </view>
+</views>
