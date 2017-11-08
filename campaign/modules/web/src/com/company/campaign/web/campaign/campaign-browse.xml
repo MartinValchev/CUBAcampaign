@@ -45,6 +45,7 @@
                         action="campaignsTable.edit"/>
                 <button id="removeBtn"
                         action="campaignsTable.remove"/>
+                <button caption="Occupacy Statistcs"/>
             </buttonsPanel>
         </groupTable>
     </layout>

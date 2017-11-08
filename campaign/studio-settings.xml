@@ -4,5 +4,8 @@
         <screen module="web"
                 previewMode="true"
                 reference="com/company/campaign/web/campaign/campaign-edit.xml"/>
+        <screen module="web"
+                previewMode="true"
+                reference="com/company/campaign/web/campaign/campaign-browse.xml"/>
     </screenDesigner>
 </studio>

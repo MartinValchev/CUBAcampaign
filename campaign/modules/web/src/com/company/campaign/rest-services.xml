@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns="http://schemas.haulmont.com/cuba/rest-services-v2.xsd">
+    <service name="campaign_CampaignService">
+        <method name="getBannerPositions">
+        </method>
+        <method name="generateWebSiteOccupacy">
+            <param name="start" type="java.util.Date"/>
+            <param name="end" type="java.util.Date"/>
+            <param name="website" type="java.lang.String"/>
+        </method>
+    </service>
+</services>
