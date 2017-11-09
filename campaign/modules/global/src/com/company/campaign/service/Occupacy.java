@@ -1,30 +1,36 @@
 package com.company.campaign.service;
 
-import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class Occupacy {
     private Date date;
-    private BigDecimal occupacyPercent;
+    private List<PositionImpressions> positionImpressionsList;
+
+
+    public List<PositionImpressions> getPositionImpressionsList() {
+        return positionImpressionsList;
+    }
+
+    public void setPositionImpressionsList(List<PositionImpressions> positionImpressionsList) {
+        this.positionImpressionsList = positionImpressionsList;
+    }
 
     public Date getDate(){
         return this.date;
     }
-    public BigDecimal getOccupacyPercent(){
-        return this.occupacyPercent;
-    }
+
     public void setDate(Date date){
         this.date = date;
     }
-    public void  setOccupacyPercent(BigDecimal occupacyPercent){
-        this.occupacyPercent = occupacyPercent;
-    }
 
     @Override
-    public String toString() {
-        return "Occupacy{" +
-                "date=" + date +
-                ", occupacyPercent=" + occupacyPercent +
-                '}';
+    public String toString(){
+        String positionsRecord= "";
+        for(PositionImpressions positionInmpression:positionImpressionsList){
+            positionsRecord += positionInmpression.toString() + "\n";
+        }
+        return "Date: " + date.toString() + " , " +positionsRecord;
     }
-}
+
+   }

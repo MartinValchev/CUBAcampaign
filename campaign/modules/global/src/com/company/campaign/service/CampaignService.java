@@ -12,4 +12,6 @@ public interface CampaignService {
     public List<Occupacy> generateWebSiteOccupacy(Date start, Date end,String website);
 
     public List<BannerPosition> getBannerPositions();
+
+    public String sayHello(String wordParamA,String wordParamB);
 }

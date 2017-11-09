@@ -76,5 +76,15 @@ public class CampaignBannerPosition extends StandardEntity {
         return impressions;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        CampaignBannerPosition that = (CampaignBannerPosition) o;
+
+        return bannerPosition != null ? bannerPosition.equals(that.bannerPosition) : that.bannerPosition == null;
+    }
 
 }
