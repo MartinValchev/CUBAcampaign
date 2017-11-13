@@ -46,6 +46,12 @@
                 <button id="removeBtn"
                         action="campaignsTable.remove"/>
                 <button caption="Occupacy Statistcs"/>
+                <link id="link"
+                      caption="TestLink"
+                      icon="icons/wf-design-deploy.png"
+                      responsive="true"
+                      target="_blank"
+                      url="http://localhost:63342/campaign/app-web/web/VAADIN/BannerPositions.html"/>
             </buttonsPanel>
         </groupTable>
     </layout>

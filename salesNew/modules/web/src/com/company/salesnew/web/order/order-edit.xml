@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.salesnew.web.order.OrderEdit"
+        datasource="orderDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.salesnew.web.order">
+    <dsContext>
+        <datasource id="orderDs"
+                    class="com.company.salesnew.entity.Order"
+                    view="order-with-customer-view">
+            <collectionDatasource id="lineDs"
+                                  property="line"/>
+        </datasource>
+        <collectionDatasource id="customersDs"
+                              class="com.company.salesnew.entity.Customer"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from salesnew$Customer e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="orderDs">
+            <column width="250px">
+                <field property="date"/>
+                <field property="amount"/>
+                <field property="customer"/>
+                <field property="status"/>
+            </column>
+        </fieldGroup>
+        <groupBox id="lineBox"
+                  caption="msg://com.company.salesnew.entity/Order.line">
+            <table id="lineTable"
+                   height="200px"
+                   width="100%">
+                <actions>
+                    <action id="create"/>
+                    <action id="edit"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="product.name"/>
+                    <column id="product.price"/>
+                    <column id="quantity"/>
+                </columns>
+                <rows datasource="lineDs"/>
+                <buttonsPanel>
+                    <button action="lineTable.create"/>
+                    <button action="lineTable.edit"/>
+                    <button action="lineTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

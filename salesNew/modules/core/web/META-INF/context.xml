@@ -1,0 +1,24 @@
+<Context>
+    <!-- Database connection -->
+    <Resource driverClassName="org.hsqldb.jdbc.JDBCDriver"
+              maxIdle="2"
+              maxTotal="20"
+              maxWaitMillis="5000"
+              name="jdbc/CubaDS"
+              password=""
+              type="javax.sql.DataSource"
+              url="jdbc:hsqldb:hsql://localhost/salesnew"
+              username="sa"/>
+    <!-- Switch off session serialization -->
+    <Manager pathname=""/>
+    <!--Data store 'MSSQL' connection-->
+    <Resource driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+              maxIdle="2"
+              maxTotal="20"
+              maxWaitMillis="5000"
+              name="jdbc/MSSQL"
+              password="Password123@"
+              type="javax.sql.DataSource"
+              url="jdbc:sqlserver://localhost;databaseName=salesnew"
+              username="martin_valchev"/>
+</Context>

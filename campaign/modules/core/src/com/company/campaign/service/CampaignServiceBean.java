@@ -18,9 +18,6 @@ import java.util.*;
 public class CampaignServiceBean implements CampaignService {
 
     @Inject
-    private DatatypeFormatter formatter;
-
-    @Inject
     private Persistence persistence;
 
     @Inject
@@ -114,7 +111,7 @@ public class CampaignServiceBean implements CampaignService {
         return websiteBannerList;
     }
     // apart from business logic
-/*    @Override
+   @Override
     public List<BannerPosition> getBannerPositions(){
         List<BannerPosition> websiteBannerList =null;
         try (Transaction tx = persistence.createTransaction()) {
@@ -130,7 +127,7 @@ public class CampaignServiceBean implements CampaignService {
     @Override
     public String sayHello(String wordParamA,String wordParamB) {
         return "Hello this is a test  message" + wordParamA +wordParamB;
-    }*/
+    }
 
 
 }
