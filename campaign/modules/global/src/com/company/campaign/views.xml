@@ -14,9 +14,9 @@
                           view="_minimal">
                 </property>
             </property>
-            <property name="impressions"/>
             <property name="startDate"/>
             <property name="endDate"/>
+            <property name="dailyImpressions"/>
         </property>
     </view>
     <view class="com.company.campaign.entity.CampaignBannerPosition"

@@ -24,8 +24,8 @@ public class CampaignBannerPosition extends StandardEntity {
     @JoinColumn(name = "BANNER_POSITION_ID")
     protected BannerPosition bannerPosition;
 
-    @Column(name = "IMPRESSIONS", nullable = false)
-    protected Long impressions;
+    @Column(name = "DAILY_IMPRESSIONS", nullable = false)
+    protected Integer dailyImpressions;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "START_DATE", nullable = false)
@@ -34,6 +34,15 @@ public class CampaignBannerPosition extends StandardEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "END_DATE", nullable = false)
     protected Date endDate;
+
+    public void setDailyImpressions(Integer dailyImpressions) {
+        this.dailyImpressions = dailyImpressions;
+    }
+
+    public Integer getDailyImpressions() {
+        return dailyImpressions;
+    }
+
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
@@ -68,23 +77,5 @@ public class CampaignBannerPosition extends StandardEntity {
         return bannerPosition;
     }
 
-    public void setImpressions(Long impressions) {
-        this.impressions = impressions;
-    }
-
-    public Long getImpressions() {
-        return impressions;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        CampaignBannerPosition that = (CampaignBannerPosition) o;
-
-        return bannerPosition != null ? bannerPosition.equals(that.bannerPosition) : that.bannerPosition == null;
-    }
 
 }

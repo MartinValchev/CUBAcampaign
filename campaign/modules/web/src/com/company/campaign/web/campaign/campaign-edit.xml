@@ -43,7 +43,7 @@
             </actions>
             <columns>
                 <column id="bannerPosition"/>
-                <column id="impressions"/>
+                <column id="dailyImpressions"/>
                 <column id="startDate"
                         caption="Start Date"/>
                 <column id="endDate"

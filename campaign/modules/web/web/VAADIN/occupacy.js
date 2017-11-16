@@ -1,7 +1,5 @@
          var oauthToken = null;
-             var webSite =  $('#website').val();
-             var startDate = $('#start_date').val();
-             var endDate = $("#end_date").val();
+
             function login() {
                 var userLogin = $('#loginField').val();
                 var userPassword = $('#passwordField').val();
@@ -22,18 +20,17 @@
                 })
             }
 function getOccupacy(){
-     $.post({
-                        url: 'http://localhost:8080/app/rest/v2/services/campaign_CampaignService/generateWebSiteOccupacy',
+           var webSite =  $('#website-criteria').val();
+             var startDate = $('#start_date').val();
+             var endDate = $("#end_date").val();
+               var urlStr= 'http://localhost:8080/app/rest/v2/services/campaign_CampaignService/generateWebSiteOccupacy?start='+startDate
+                  +'&end='+ endDate + '&website=' + webSite;
+     $.get({
+                        url: urlStr,
                         headers: {
                             'Authorization': 'Bearer ' + oauthToken,
                             'Content-Type': 'application/x-www-form-urlencoded'
                         },
-                        dataType: 'json',
-                                           JSON.stringify({
-                                           							website:webSite,
-                                           						 	start: startDate,
-                                           						 	end: endDate
-                                           						}),
                         success: function (data) {
                         $('#input-content').css('visibility','visible');
                         $('#timeline-content').show();
@@ -45,7 +42,6 @@ function getOccupacy(){
                         }
                     });
                  }
-}
 		function checkInput() {
 				var regex = {
 					date : /^\d{2}\/\d{2}\/\d{4}/,

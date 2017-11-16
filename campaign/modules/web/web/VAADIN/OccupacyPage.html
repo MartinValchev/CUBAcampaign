@@ -9,28 +9,39 @@
 
     <link rel="stylesheet" href="css/style.css">
     <script src="jquery-3.2.1.js"></script>
-
+    <script src="occupacy.js"></script>
 </head>
 
 <body>
-<div id="input_content">
+<div id="loginForm">
+    <div class="form-group">
+        <label for="loginField">Login:</label>
+        <input type="text" class="form-control" id="loginField">
+    </div>
+    <div class="form-group">
+        <label for="passwordField">Password:</label>
+        <input type="password" class="form-control" id="passwordField">
+    </div>
+    <button type="submit" class="btn btn-default" onclick="login()">Submit</button>
+</div>
+<div style="width: 300px; margin: auto;">
+<div id="input_content" style="display: none">
 
     Enter Website: <br><br>
     <select id="website-criteria">
-        <option value="Webcafe">Webcafe</option>
-        <option value="Chronicle">Chronicle</option>
-        <option value="Mama_mia">Mama mia</option>
-        <option value="Tenniskafe">Tenniskafe</option>
+        <option value="sport.com">Sport.com</option>
+        <option value="news.com">News.com</option>
+        <option value="hobby.com">Hobby.com</option>
     </select><br><br>
     Enter period start date<br>
     <input type="date" id="start_date"><br><br>
     Enter period end date<br>
     <input type="date" id="end_date" ><br><br>
-    <button type="button" id="getOccupacy"
+    <button type="button" id="submitInput"
             onclick="getOccupacy()">Submit</button>
 </div>
-
-<div class="timeline" id="timeline-content">
+</div>
+<div class="timeline" id="timeline-content" style="display: none">
     <div class="year">
         <div class="inner">
             <span id="start_date_period">November</span>
@@ -52,7 +63,27 @@
         </div>
     </div>
 </div>
-<script src="occupacy.js"></script>
+    <script type="text/javascript">
+                      var oauthToken = null;
+                function login() {
+                    var userLogin = $('#loginField').val();
+                    var userPassword = $('#passwordField').val();
+                    $.post({
+                        url: 'http://localhost:8080/app/rest/v2/oauth/token',
+                        headers: {
+                            'Authorization': 'Basic Y2xpZW50OnNlY3JldA==',
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        dataType: 'json',
+                        data: {grant_type: 'password', username: userLogin, password: userPassword},
+                        success: function (data) {
+                           oauthToken = data.access_token;
+                           $('#loginForm').hide();
+                           $('#input_content').show();
+                        }
+                    })
+                }
+    </script>
 
 </body>
 </html>

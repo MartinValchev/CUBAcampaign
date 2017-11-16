@@ -47,7 +47,7 @@ create table CAMPAIGN_CAMPAIGN_BANNER_POSITION (
     --
     CAMPAIGN_ID varchar(36) not null,
     BANNER_POSITION_ID varchar(36) not null,
-    IMPRESSIONS bigint not null,
+    DAILY_IMPRESSIONS integer not null,
     START_DATE timestamp not null,
     END_DATE timestamp not null,
     --

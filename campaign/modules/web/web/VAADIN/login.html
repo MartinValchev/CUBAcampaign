@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
+    <script src="jquery-3.2.1.js"></script>
 </head>
 <body>
 <div id="loginForm">
@@ -31,7 +32,7 @@
                         data: {grant_type: 'password', username: userLogin, password: userPassword},
                         success: function (data) {
                            oauthToken = data.access_token;
-                           window.location.href = "OccupacyInput.html";
+                           window.location.href = "OccupacyPage.html";
                         }
                     })
                 }

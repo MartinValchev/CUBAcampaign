@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 
 import javax.inject.Inject;
+import javax.persistence.TemporalType;
 import java.util.*;
 
 @Service(CampaignService.NAME)
@@ -22,6 +23,8 @@ public class CampaignServiceBean implements CampaignService {
 
     @Inject
     private Metadata meta;
+    // list of all banner positions found in campaingnBannerPosition
+    private List<BannerPosition> bannerPositionsList = new ArrayList<>();
     /*
     Business Logic
     1.Take from BannerPosition table all records that have the same website name as the one requested
@@ -52,10 +55,8 @@ public class CampaignServiceBean implements CampaignService {
             positionImpressionsList = new ArrayList<>();
 
             for(BannerPosition bannerPosition: bannerPositions){
-                CampaignBannerPosition tempCampaignBannerPosition =meta.create(CampaignBannerPosition.class);
-                tempCampaignBannerPosition.setBannerPosition(bannerPosition);
-                campaignBannerPositionList = campaignBannerPositionList.subList(campaignBannerPositionList.indexOf(tempCampaignBannerPosition),
-                        campaignBannerPositionList.lastIndexOf(tempCampaignBannerPosition));
+                // filter campaign banner position list by banner position
+                campaignBannerPositionList = filterByCampaignPosition(campaignBannerPositionList,bannerPosition);
                 PositionImpressions currentPositionImpressions= new PositionImpressions();
                 currentPositionImpressions.setBannerPosition(bannerPosition);
                 currentPositionImpressions.setImpressions(new Long(0));
@@ -64,7 +65,7 @@ public class CampaignServiceBean implements CampaignService {
                    for(CampaignBannerPosition item:campaignBannerPositionList){
                        // check if CampaignBannerPosition is still active on website banner position
                        if(item.getEndDate().after(start) ||item.getEndDate().equals(start)) {
-                           tempImpressions += item.getImpressions();
+                           tempImpressions += item.getDailyImpressions();
                        }
                    }
 
@@ -86,13 +87,17 @@ public class CampaignServiceBean implements CampaignService {
         List<CampaignBannerPosition> campaignBannersList =null;
         try (Transaction tx = persistence.createTransaction()) {
             EntityManager entityManager = persistence.getEntityManager();
-            TypedQuery<CampaignBannerPosition> newQuery = entityManager.
-                    createQuery("select p from campaign$CampaignBannerPosition p where p.START_DATE BETWEEN :startDate AND :endDate AND p.bannerPosition.website=:website order by p.bannerPosition.name",
+            Query newQuery = entityManager.
+                    createQuery("select p from campaign$CampaignBannerPosition p where p.startDate BETWEEN :start AND :end AND p.bannerPosition.website.name=:websiteName",
                             CampaignBannerPosition.class);
-            newQuery.setParameter("startDate", startDate);
-            newQuery.setParameter("endDate", endDate);
-            newQuery.setParameter("website", website);
+            newQuery.setParameter("start", startDate, TemporalType.TIMESTAMP);
+            newQuery.setParameter("end", endDate, TemporalType.TIMESTAMP);
+           newQuery.setParameter("websiteName", website);
             campaignBannersList = newQuery.getResultList();
+            for(CampaignBannerPosition position: campaignBannersList){
+                BannerPosition bannerPos = position.getBannerPosition();
+                bannerPositionsList.add(bannerPos);
+        }
             tx.commit();
         }
         return campaignBannersList;
@@ -102,13 +107,25 @@ public class CampaignServiceBean implements CampaignService {
 
         try (Transaction tx = persistence.createTransaction()) {
             EntityManager entityManager = persistence.getEntityManager();
-            TypedQuery<BannerPosition> newQuery = entityManager.
-                    createQuery("select p from campaign$BannerPosition p where p.website=:websiteN order by p.name",BannerPosition.class);
+            Query newQuery = entityManager.
+                    createQuery("select p from campaign$BannerPosition p where p.website.name=:websiteN",BannerPosition.class);
             newQuery.setParameter("websiteN", websiteName);
             websiteBannerList = newQuery.getResultList();
             tx.commit();
         }
         return websiteBannerList;
+    }
+    public List<CampaignBannerPosition> filterByCampaignPosition(List<CampaignBannerPosition> rawPositionsList,BannerPosition bannerPosition){
+        List<CampaignBannerPosition> filteredList = new ArrayList<>();
+        int counter =0;
+            for(CampaignBannerPosition item: rawPositionsList){
+                BannerPosition current =bannerPositionsList.get(counter);
+                counter++;
+                if(current.equals(bannerPosition)){
+                    filteredList.add(item);
+                }
+            }
+        return filteredList;
     }
     // apart from business logic
    @Override
