@@ -2,6 +2,8 @@ package com.company.salesnew.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import com.haulmont.cuba.core.entity.BaseLongIdEntity;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
@@ -16,10 +18,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import com.haulmont.cuba.core.entity.BaseUuidEntity;
 
 @Table(name = "SALESNEW_ORDER")
 @Entity(name = "salesnew$Order")
-public class Order extends StandardEntity {
+public class Order extends BaseLongIdEntity {
     private static final long serialVersionUID = 1947885816090605679L;
 
     @Temporal(TemporalType.DATE)

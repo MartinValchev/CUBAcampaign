@@ -42,7 +42,7 @@ dependencies {
 
 }
 
-def hsql = 'org.hsqldb:hsqldb:2.2.9'
+def mssql = 'com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre8'
 
 configure([globalModule, coreModule, guiModule, webModule]) {
     apply(plugin: 'java')
@@ -80,9 +80,8 @@ configure(coreModule) {
     dependencies {
         compile(globalModule)
         provided(servletApi)
-        jdbc(hsql)
-        testRuntime(hsql)
-        jdbc('com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre8') { exclude(group: 'com.microsoft.azure', module: 'azure-keyvault') }
+        jdbc(mssql) { exclude(group: 'com.microsoft.azure', module: 'azure-keyvault') }
+        testRuntime(mssql) { exclude(group: 'com.microsoft.azure', module: 'azure-keyvault') }
 
     }
 
@@ -103,19 +102,21 @@ configure(coreModule) {
     }
 
     task createDb(dependsOn: assembleDbScripts, description: 'Creates local database', type: CubaDbCreation) {
-        dbms = 'hsql'
+        dbmsVersion = '2012'
+        dbms = 'mssql'
         host = 'localhost'
         dbName = 'salesnew'
-        dbUser = 'sa'
-        dbPassword = ''
+        dbUser = 'martin_valchev'
+        dbPassword = 'Password123@'
     }
 
     task updateDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
-        dbms = 'hsql'
+        dbmsVersion = '2012'
+        dbms = 'mssql'
         host = 'localhost'
         dbName = 'salesnew'
-        dbUser = 'sa'
-        dbPassword = ''
+        dbUser = 'martin_valchev'
+        dbPassword = 'Password123@'
     }
 }
 

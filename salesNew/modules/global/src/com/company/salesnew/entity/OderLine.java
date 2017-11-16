@@ -7,11 +7,14 @@ import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.haulmont.cuba.core.entity.BaseLongIdEntity;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.BaseUuidEntity;
 
 @Table(name = "SALESNEW_ODER_LINE")
 @Entity(name = "salesnew$OderLine")
-public class OderLine extends StandardEntity {
+public class OderLine extends BaseLongIdEntity {
     private static final long serialVersionUID = 4299537511781860584L;
 
     @ManyToOne(fetch = FetchType.LAZY)

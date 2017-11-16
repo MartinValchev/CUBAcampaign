@@ -8,6 +8,8 @@ import com.haulmont.chile.core.annotations.NamePattern;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @NamePattern("%s %s|name,website")
 @Table(name = "CAMPAIGN_BANNER_POSITION")
@@ -15,9 +17,11 @@ import javax.persistence.ManyToOne;
 public class BannerPosition extends StandardEntity {
     private static final long serialVersionUID = 409295628593982484L;
 
+    @NotNull(message = "Please fill the Banner Position Name")
     @Column(name = "NAME", nullable = false, length = 50)
     protected String name;
 
+    @Min(message = "Impressions Limit cannot be negative", value = 0)
     @Column(name = "IMPRESSIONS_LIMIT", nullable = false)
     protected Long impressionsLimit;
 

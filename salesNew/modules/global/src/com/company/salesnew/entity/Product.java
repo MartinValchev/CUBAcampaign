@@ -4,13 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import javax.persistence.Column;
+
+import com.haulmont.cuba.core.entity.BaseLongIdEntity;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.cuba.core.entity.BaseUuidEntity;
 
 @NamePattern("%s|name")
 @Table(name = "SALESNEW_PRODUCT")
 @Entity(name = "salesnew$Product")
-public class Product extends StandardEntity {
+public class Product extends BaseLongIdEntity {
     private static final long serialVersionUID = 2615743118848744891L;
 
     @Column(name = "NAME", nullable = false)

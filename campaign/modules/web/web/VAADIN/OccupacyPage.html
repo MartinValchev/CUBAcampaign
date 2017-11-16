@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>CSS Timeline</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="jquery-3.2.1.js"></script>
+
 </head>
+
 <body>
+<div id="input_content">
+
+    Enter Website: <br><br>
+    <select id="website-criteria">
+        <option value="Webcafe">Webcafe</option>
+        <option value="Chronicle">Chronicle</option>
+        <option value="Mama_mia">Mama mia</option>
+        <option value="Tenniskafe">Tenniskafe</option>
+    </select><br><br>
+    Enter period start date<br>
+    <input type="date" id="start_date"><br><br>
+    Enter period end date<br>
+    <input type="date" id="end_date" ><br><br>
+    <button type="button" id="getOccupacy"
+            onclick="getOccupacy()">Submit</button>
+</div>
+
+<div class="timeline" id="timeline-content">
+    <div class="year">
+        <div class="inner">
+            <span id="start_date_period">November</span>
+        </div>
+    </div>
+
+    <ul class="days">
+        <li class="day">
+            <div class="events">
+                <p class="occupacy_content">45%</p>
+                <div class="date">1 November (Tuesday)</div>
+            </div>
+        </li>
+    </ul>
+
+    <div class="year year--end">
+        <div class="inner">
+            <span id="end_date_period">December</span>
+        </div>
+    </div>
+</div>
+<script src="occupacy.js"></script>
 
 </body>
 </html>

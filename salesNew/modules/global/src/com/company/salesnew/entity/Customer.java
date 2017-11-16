@@ -3,13 +3,16 @@ package com.company.salesnew.entity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Column;
+
+import com.haulmont.cuba.core.entity.BaseLongIdEntity;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.cuba.core.entity.BaseUuidEntity;
 
 @NamePattern("%s|name")
 @Table(name = "SALESNEW_CUSTOMER")
 @Entity(name = "salesnew$Customer")
-public class Customer extends StandardEntity {
+public class Customer extends BaseLongIdEntity {
     private static final long serialVersionUID = -4642526234630844703L;
 
     @Column(name = "NAME", nullable = false, length = 100)
